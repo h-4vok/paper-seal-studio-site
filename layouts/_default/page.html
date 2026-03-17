@@ -1,0 +1,10 @@
+{{ define "main" }}
+  <section class="centered-page">
+    <p class="eyebrow">Paper Seal Studio</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+    <div class="content-body prose">
+      {{ .Content }}
+    </div>
+  </section>
+{{ end }}

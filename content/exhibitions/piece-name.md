@@ -1,13 +1,13 @@
 ---
 title: "Piece Name"
 collection: "Launch Collection"
-vibe: ["Serene", "Coastal"]
+vibe: ["Serene", "Atmospheric"]
 paper: "Hahnemühle German Etching 310gsm"
-sizes: ["7x5", "A4", "A3"]
-status: "Available"
-fair_exclusive: true
-story: "A placeholder story for the first showcased piece."
+price_a3: "£XX"
+image_main: "/images/piece-main.svg"
+image_mockup: "/images/piece-mockup.svg"
+story: "A suspended coastal moment rendered for collectors who care about depth, paper grain, and atmosphere."
 draft: true
 ---
 
-This is the starter template for an individual showcase page. Replace it with the narrative, imagery, and technical details for the finished piece.
+An atmospheric East Sussex study printed on Hahnemühle German Etching 310gsm, intended to reveal texture, colour depth, and quiet drama in person.

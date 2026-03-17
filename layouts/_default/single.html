@@ -1,22 +1,22 @@
 {{ define "main" }}
-  <article class="single-page">
-    <p class="eyebrow">{{ .Section | humanize }}</p>
-    <h1>{{ .Title }}</h1>
-    {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
-
-    {{ if eq .Section "exhibitions" }}
-      <dl class="specs">
-        {{ with .Params.collection }}<div><dt>Collection</dt><dd>{{ . }}</dd></div>{{ end }}
-        {{ with .Params.vibe }}<div><dt>Vibe</dt><dd>{{ delimit . ", " }}</dd></div>{{ end }}
-        {{ with .Params.paper }}<div><dt>Paper</dt><dd>{{ . }}</dd></div>{{ end }}
-        {{ with .Params.sizes }}<div><dt>Sizes</dt><dd>{{ delimit . ", " }}</dd></div>{{ end }}
-        {{ with .Params.status }}<div><dt>Status</dt><dd>{{ . }}</dd></div>{{ end }}
-      </dl>
-      <p><a class="button" href="https://wa.me/" target="_blank" rel="noreferrer">Reserve for Pickup</a></p>
-    {{ end }}
-
-    <div class="content-body">
-      {{ .Content }}
-    </div>
+  {{ $message := printf "Hi! I am interested in reserving %s for the next fair." .Title }}
+  {{ $phone := site.Params.whatsappPhone }}
+  <article class="showcase">
+    <section class="showcase-hero">
+      <div class="showcase-image-frame">
+        <img src="{{ .Params.image_main | relURL }}" alt="{{ .Title }}">
+      </div>
+      <div class="showcase-copy">
+        <p class="eyebrow">{{ with .Params.collection }}{{ . }}{{ else }}Piece Showcase{{ end }}</p>
+        <h1>{{ .Title }}</h1>
+        {{ with .Params.vibe }}<p class="lede">{{ delimit . " · " }}</p>{{ end }}
+        <dl class="specs">
+          {{ with .Params.paper }}<div><dt>Paper</dt><dd>{{ . }}</dd></div>{{ end }}
+          {{ with .Params.price_a3 }}<div><dt>A3</dt><dd>{{ . }}</dd></div>{{ end }}
+        </dl>
+        <p class="content-body">{{ .Content }}</p>
+        <a class="button" href="https://wa.me/{{ $phone }}?text={{ $message | urlquery }}" target="_blank" rel="noreferrer">Reserve for Pickup</a>
+      </div>
+    </section>
   </article>
 {{ end }}

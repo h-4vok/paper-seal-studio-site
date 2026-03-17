@@ -5,19 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
     <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
-    {{ $css := resources.Get "css/site.css" | minify | fingerprint }}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    {{ $css := resources.Get "css/main.css" | minify | fingerprint }}
     <link rel="stylesheet" href="{{ $css.RelPermalink }}">
   </head>
   <body>
+    <div class="site-frame"></div>
     <div class="site-shell">
       <header class="site-header">
-        <a class="brand" href="{{ "/" | relURL }}">
-          <span class="brand-mark">Paper Seal Studio</span>
-          <span class="brand-tagline">{{ site.Params.tagline }}</span>
+        <a class="brand" href="{{ "/" | relURL }}" aria-label="Paper Seal Studio home">
+          <span class="brand-kicker">Eastbourne, East Sussex</span>
+          <span class="brand-mark">The Paper Seal Studio</span>
         </a>
         <nav class="site-nav" aria-label="Primary">
           {{ range site.Menus.main }}
-            <a href="{{ .URL }}" {{ if $.IsMenuCurrent "main" . }}aria-current="page"{{ end }}>{{ .Name }}</a>
+            {{ $active := or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) }}
+            <a href="{{ .URL }}" {{ if $active }}aria-current="page"{{ end }}>{{ .Name }}</a>
           {{ end }}
         </nav>
       </header>
@@ -25,7 +30,8 @@
         {{ block "main" . }}{{ end }}
       </main>
       <footer class="site-footer">
-        <p>{{ site.Title }} · {{ site.Params.location }}</p>
+        <p>{{ site.Title }}</p>
+        <p>{{ site.Params.tagline }}</p>
       </footer>
     </div>
   </body>

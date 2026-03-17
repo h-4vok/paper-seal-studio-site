@@ -7,6 +7,8 @@ disableKinds = ["taxonomy", "term"]
 tagline = "You Will Feel The Difference."
 location = "Eastbourne, East Sussex"
 description = "Archival studio pieces rooted in East Sussex and printed with gallery-grade care."
+whatsappPhone = "447000000000"
+heroImage = "/images/hero-paper-seal.svg"
 
 [menus]
   [[menus.main]]

@@ -1,24 +1,27 @@
 {{ define "main" }}
-  <section class="page-intro">
-    <p class="eyebrow">Paper Seal Studio</p>
+  <section class="page-hero">
+    <p class="eyebrow">Curated Exhibition</p>
     <h1>{{ .Title }}</h1>
     {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
-    {{ .Content }}
+    <div class="content-body">{{ .Content }}</div>
   </section>
 
-  {{ if .Pages }}
-    <section class="panel-grid">
-      {{ range .Pages.ByWeight }}
-        <article class="panel">
-          <p class="meta">{{ .Section | title }}</p>
-          <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-          {{ with .Params.story }}
-            <p>{{ . }}</p>
-          {{ else }}
-            <p>{{ with .Description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}</p>
-          {{ end }}
-        </article>
-      {{ end }}
-    </section>
-  {{ end }}
+  <section class="editorial-grid" aria-label="{{ .Title }}">
+    {{ range $index, $page := .Pages.ByTitle }}
+      <article class="piece-card piece-card-{{ modBool $index 2 | cond "alt" "base" }}">
+        <a class="piece-card-link" href="{{ $page.RelPermalink }}">
+          <div class="piece-card-media">
+            <div class="piece-card-main" style="background-image: linear-gradient(180deg, rgba(0, 0, 128, 0.08), rgba(0, 0, 0, 0.36)), url('{{ $page.Params.image_main | relURL }}');"></div>
+            <div class="piece-card-mockup" style="background-image: linear-gradient(180deg, rgba(249, 247, 242, 0.12), rgba(14, 31, 70, 0.36)), url('{{ $page.Params.image_mockup | relURL }}');"></div>
+          </div>
+          <div class="piece-card-copy">
+            <p class="meta">{{ with $page.Params.collection }}{{ . }}{{ else }}Exhibition{{ end }}</p>
+            <h2>{{ $page.Title }}</h2>
+            {{ with $page.Params.vibe }}<p>{{ delimit . " · " }}</p>{{ end }}
+            {{ with $page.Params.price_a3 }}<p class="price">A3 {{ . }}</p>{{ end }}
+          </div>
+        </a>
+      </article>
+    {{ end }}
+  </section>
 {{ end }}
