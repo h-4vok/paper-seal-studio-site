@@ -1,0 +1,14 @@
+{
+  "name": "paper-seal-studio-site",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Hugo site for Paper Seal Studio.",
+  "scripts": {
+    "dev": "hugo server --buildDrafts --disableFastRender",
+    "build": "hugo --gc --minify",
+    "build:drafts": "hugo --buildDrafts",
+    "preview": "hugo server",
+    "new:piece": "hugo new content exhibitions/piece-name.md",
+    "new:page": "hugo new content"
+  }
+}

@@ -1,0 +1,24 @@
+{{ define "main" }}
+  <section class="page-intro">
+    <p class="eyebrow">Paper Seal Studio</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+    {{ .Content }}
+  </section>
+
+  {{ if .Pages }}
+    <section class="panel-grid">
+      {{ range .Pages.ByWeight }}
+        <article class="panel">
+          <p class="meta">{{ .Section | title }}</p>
+          <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+          {{ with .Params.story }}
+            <p>{{ . }}</p>
+          {{ else }}
+            <p>{{ with .Description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}</p>
+          {{ end }}
+        </article>
+      {{ end }}
+    </section>
+  {{ end }}
+{{ end }}

@@ -1,0 +1,32 @@
+baseURL = "http://localhost:1313/"
+languageCode = "en-gb"
+title = "Paper Seal Studio"
+disableKinds = ["taxonomy", "term"]
+
+[params]
+tagline = "You Will Feel The Difference."
+location = "Eastbourne, East Sussex"
+description = "Archival studio pieces rooted in East Sussex and printed with gallery-grade care."
+
+[menus]
+  [[menus.main]]
+    name = "Exhibitions"
+    pageRef = "/exhibitions"
+    weight = 10
+  [[menus.main]]
+    name = "The Studio"
+    pageRef = "/the-studio"
+    weight = 20
+  [[menus.main]]
+    name = "Find Us"
+    pageRef = "/find-us"
+    weight = 30
+  [[menus.main]]
+    name = "Care & Framing"
+    pageRef = "/care-and-framing"
+    weight = 40
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

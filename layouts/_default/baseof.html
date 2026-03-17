@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
+    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
+    {{ $css := resources.Get "css/site.css" | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="brand" href="{{ "/" | relURL }}">
+          <span class="brand-mark">Paper Seal Studio</span>
+          <span class="brand-tagline">{{ site.Params.tagline }}</span>
+        </a>
+        <nav class="site-nav" aria-label="Primary">
+          {{ range site.Menus.main }}
+            <a href="{{ .URL }}" {{ if $.IsMenuCurrent "main" . }}aria-current="page"{{ end }}>{{ .Name }}</a>
+          {{ end }}
+        </nav>
+      </header>
+      <main>
+        {{ block "main" . }}{{ end }}
+      </main>
+      <footer class="site-footer">
+        <p>{{ site.Title }} · {{ site.Params.location }}</p>
+      </footer>
+    </div>
+  </body>
+</html>
